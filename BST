@@ -1,0 +1,66 @@
+package com.company;
+
+class BST {
+    class Node {
+        int key;
+        Node left, right;
+
+        public Node(int key) {
+            this.key = key;
+            left = null;
+            right = null;
+        }
+    }
+
+    Node root;
+
+    BST(){
+        root = null;
+    }
+
+    void insert(int key){
+        root = insertBST(root, key);
+    }
+
+    private Node insertBST(Node root, int key){
+        if(root == null){
+            root = new Node(key);
+            return root;
+        }
+        if(key < root.key){
+            root.left = insertBST(root.left, key);
+        } else {
+            root.right = insertBST(root.right, key);
+        }
+        return root;
+    }
+
+    void inorder(){
+        inorderBST(root);
+    }
+
+    private void inorderBST(Node root){
+        if(root != null){
+            inorderBST(root.left);
+            System.out.print(root.key + " ");
+            inorderBST(root.right);
+        }
+    }
+
+
+}
+
+public class Main {
+
+    public static void main(String[] args){
+        BST t = new BST();
+
+        t.insert(10);
+        t.insert(15);
+        t.insert(25);
+        t.insert(40);
+        t.insert(12);
+
+        t.inorder();
+    }
+}
